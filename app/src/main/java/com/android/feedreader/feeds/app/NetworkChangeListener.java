@@ -1,4 +1,4 @@
-package com.android.feedreader.feeds;
+package com.android.feedreader.feeds.app;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
 public interface NetworkChangeListener {

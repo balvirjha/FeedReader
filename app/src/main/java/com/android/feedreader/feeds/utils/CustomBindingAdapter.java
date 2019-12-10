@@ -1,4 +1,4 @@
-package com.android.feedreader.feeds;
+package com.android.feedreader.feeds.utils;
 
 import android.text.TextUtils;
 import android.widget.ImageView;

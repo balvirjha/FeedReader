@@ -1,4 +1,4 @@
-package com.android.feedreader.feeds;
+package com.android.feedreader.feeds.modules.feeds;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
@@ -7,6 +7,8 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 import com.android.feedreader.feeds.modals.FeedsResponse;
+import com.android.feedreader.feeds.model.Event;
+import com.android.feedreader.feeds.repo.FeedsRepo;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class FeedListViewModal extends ViewModel {

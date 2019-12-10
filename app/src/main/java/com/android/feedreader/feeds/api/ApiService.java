@@ -1,4 +1,4 @@
-package com.android.feedreader.feeds;
+package com.android.feedreader.feeds.api;
 
 
 import com.android.feedreader.feeds.modals.Feeds;

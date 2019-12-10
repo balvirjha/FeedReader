@@ -1,4 +1,4 @@
-package com.android.feedreader.feeds;
+package com.android.feedreader.feeds.modules.feeds;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.feedreader.R;
 import com.android.feedreader.databinding.FragmentFeedListBinding;
+import com.android.feedreader.feeds.app.BaseFragment;
+import com.android.feedreader.feeds.app.FeedApplication;
 import com.android.feedreader.feeds.modals.FeedsResponse;
 import com.android.feedreader.feeds.modals.Row;
 

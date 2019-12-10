@@ -1,4 +1,4 @@
-package com.android.feedreader.feeds;
+package com.android.feedreader.feeds.app;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

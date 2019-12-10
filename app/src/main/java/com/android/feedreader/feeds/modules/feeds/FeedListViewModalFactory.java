@@ -1,7 +1,9 @@
-package com.android.feedreader.feeds;
+package com.android.feedreader.feeds.modules.feeds;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.android.feedreader.feeds.repo.FeedsRepo;
 
 @SuppressWarnings({"unchecked", "NullableProblems"})
 public class FeedListViewModalFactory extends ViewModelProvider.NewInstanceFactory {

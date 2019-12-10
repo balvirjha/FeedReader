@@ -1,9 +1,12 @@
-package com.android.feedreader.feeds;
+package com.android.feedreader.feeds.repo;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.android.feedreader.feeds.api.ApiService;
+import com.android.feedreader.feeds.api.FlowSDKApiClient;
 import com.android.feedreader.feeds.modals.Feeds;
 import com.android.feedreader.feeds.modals.FeedsResponse;
+import com.android.feedreader.feeds.model.Event;
 
 import retrofit2.Call;
 import retrofit2.Callback;

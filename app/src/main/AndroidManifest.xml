@@ -5,13 +5,13 @@
     tools:ignore="GoogleAppIndexingWarning">
 
     <application
-        android:name=".feeds.FeedApplication"
+        android:name=".feeds.app.FeedApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feeds.FeedsActivity"
+        <activity android:name=".feeds.modules.feeds.FeedsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.android.feedreader.feeds;
+package com.android.feedreader.feeds.model;
 
 import androidx.annotation.Nullable;
 

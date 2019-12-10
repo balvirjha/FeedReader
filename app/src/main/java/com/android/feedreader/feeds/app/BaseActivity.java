@@ -1,4 +1,4 @@
-package com.android.feedreader.feeds;
+package com.android.feedreader.feeds.app;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
 import com.android.feedreader.R;
+import com.android.feedreader.feeds.model.Event;
 
 @SuppressWarnings("ALL")
 @SuppressLint("Registered")

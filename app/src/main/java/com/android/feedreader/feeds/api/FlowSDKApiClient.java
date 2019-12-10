@@ -1,6 +1,8 @@
-package com.android.feedreader.feeds;
+package com.android.feedreader.feeds.api;
 
 import android.util.Log;
+
+import com.android.feedreader.feeds.app.FeedApplication;
 
 import java.util.concurrent.TimeUnit;
 

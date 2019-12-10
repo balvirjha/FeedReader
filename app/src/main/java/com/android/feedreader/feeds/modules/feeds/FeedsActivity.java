@@ -1,10 +1,12 @@
-package com.android.feedreader.feeds;
+package com.android.feedreader.feeds.modules.feeds;
 
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 
 import com.android.feedreader.R;
+import com.android.feedreader.feeds.app.BaseActivity;
+import com.android.feedreader.feeds.app.BaseFragment;
 
 public class FeedsActivity extends BaseActivity {
 

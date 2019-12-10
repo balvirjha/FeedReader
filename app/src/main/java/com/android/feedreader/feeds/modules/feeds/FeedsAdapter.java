@@ -1,4 +1,4 @@
-package com.android.feedreader.feeds;
+package com.android.feedreader.feeds.modules.feeds;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

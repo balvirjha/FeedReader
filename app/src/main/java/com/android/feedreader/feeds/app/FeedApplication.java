@@ -1,4 +1,4 @@
-package com.android.feedreader.feeds;
+package com.android.feedreader.feeds.app;
 
 import android.content.Context;
 import android.content.IntentFilter;
@@ -8,6 +8,10 @@ import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
 import com.android.feedreader.BuildConfig;
+import com.android.feedreader.feeds.api.ApiService;
+import com.android.feedreader.feeds.api.FlowSDKApiClient;
+import com.android.feedreader.feeds.model.Event;
+import com.android.feedreader.feeds.repo.FeedsRepo;
 
 public class FeedApplication extends MultiDexApplication implements NetworkStateReceiver.NetworkStateReceiverListener {
     private MutableLiveData<Event<Boolean>> isConnected;
