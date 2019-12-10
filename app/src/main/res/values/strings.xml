@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FeedReader</string>
     <string name="not_connected_to_network">Not Connected To Network</string>
+    <string name="errorString">Error: </string>
 </resources>

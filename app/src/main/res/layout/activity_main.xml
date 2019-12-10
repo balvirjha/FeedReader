@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--suppress ALL -->
+<?xml version="1.0" encoding="utf-8"?><!--suppress ALL -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -13,24 +12,29 @@
             android:id="@+id/fragmentContainer"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_below="@+id/toolbarLayout"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <include
-            layout="@layout/layout_network_banner"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/bannerHeight"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbarLayout" />
 
         <include
+            android:id="@+id/include"
+            layout="@layout/layout_network_banner"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bannerHeight"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/fragmentContainer"
+            app:layout_constraintStart_toStartOf="@+id/fragmentContainer"
+            app:layout_constraintTop_toTopOf="@+id/fragmentContainer" />
+
+        <include
             android:id="@+id/toolbarLayout"
-            layout="@layout/layout_toolbar" />
+            layout="@layout/layout_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <data></data>

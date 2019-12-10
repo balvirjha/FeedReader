@@ -22,6 +22,7 @@ public class BaseFragment extends Fragment implements NetworkChangeListener {
         super.onStop();
     }
 
+    @SuppressWarnings("unused")
     @Override
     public void onNetworkChange(boolean isConnected) {
         // do nothing

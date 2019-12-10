@@ -33,13 +33,13 @@ public class BaseActivity extends AppCompatActivity {
             public void onChanged(@Nullable Event<Boolean> booleanEvent) {
                 Boolean isConnected = booleanEvent.getContentIfNotHandled();
                 if (isConnected != null) {
-                    if (findViewById(R.id.networkBanner) != null) {
+                    if (findViewById(R.id.include) != null) {
                         if (isNetworkAvailable()) {
-                            findViewById(R.id.networkBanner).setVisibility(View.GONE);
+                            findViewById(R.id.include).setVisibility(View.GONE);
                             if (networkChangeListener != null)
                                 networkChangeListener.onNetworkChange(true);
                         } else {
-                            findViewById(R.id.networkBanner).setVisibility(View.VISIBLE);
+                            findViewById(R.id.include).setVisibility(View.VISIBLE);
                             if (networkChangeListener != null)
                                 networkChangeListener.onNetworkChange(false);
                         }
@@ -47,25 +47,19 @@ public class BaseActivity extends AppCompatActivity {
                 }
             }
         });
-        if (findViewById(R.id.networkBanner) != null) {
+        if (findViewById(R.id.include) != null) {
             if (isNetworkAvailable()) {
-                findViewById(R.id.networkBanner).setVisibility(View.GONE);
+                findViewById(R.id.include).setVisibility(View.GONE);
             } else {
-                findViewById(R.id.networkBanner).setVisibility(View.VISIBLE);
+                findViewById(R.id.include).setVisibility(View.VISIBLE);
             }
         }
     }
 
     public void addNetworkListener(final NetworkChangeListener listener) {
         this.networkChangeListener = listener;
-        if (findViewById(R.id.networkBanner) != null) {
+        if (findViewById(R.id.include) != null) {
             this.networkChangeListener = listener;
-            findViewById(R.id.networkBanner).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onNetworkChange(isNetworkAvailable());
-                }
-            });
         }
     }
 
@@ -73,7 +67,7 @@ public class BaseActivity extends AppCompatActivity {
         this.networkChangeListener = null;
     }
 
-    private boolean isNetworkAvailable() {
+    public boolean isNetworkAvailable() {
         ConnectivityManager cm = (ConnectivityManager) FeedApplication.getInstance()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
