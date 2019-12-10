@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.android.feedreader"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    aaptOptions {
+        cruncherEnabled = false
+    }
+
+    dexOptions {
+        preDexLibraries = false
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    lintOptions {
+        enable 'RtlHardcoded', 'RtlCompat', 'RtlEnabled'
+        check 'NewApi', 'InlinedApi'
+        quiet true
+        abortOnError true
+        ignoreWarnings false
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayoutVersion"
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
+    implementation "com.google.android.material:material:$rootProject.designLibVersion"
+    implementation "androidx.cardview:cardview:$rootProject.designLibVersion"
+    //noinspection GradleDependency
+    implementation "androidx.recyclerview:recyclerview:$rootProject.designLibVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
+    implementation "androidx.paging:paging-runtime:$rootProject.lifecycleVersion"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.loggingInterceptor"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.picasso:picasso:$rootProject.picasso"
+    implementation "androidx.multidex:multidex:$rootProject.multidexVersion"
+
+}

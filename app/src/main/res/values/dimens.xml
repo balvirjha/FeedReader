@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="bannerHeight">30dp</dimen>
+    <dimen name="text_size_14sp" tools:keep="@dimen/text_size_14sp">14sp</dimen>
+    <dimen name="text_size_17sp">17sp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+</resources>

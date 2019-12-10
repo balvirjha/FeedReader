@@ -1,0 +1,27 @@
+<!--suppress CheckTagEmptyBody -->
+<resources>
+
+    <!-- Base application theme. -->
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorWhite</item>
+    </style>
+
+    <style name="Feed.Medium" parent="TextAppearance.AppCompat.Headline">
+        <item name="android:textSize">@dimen/text_size_17sp</item>
+        <item name="fontPath">fonts/Roboto-Medium.ttf</item>
+        <item name="android:textColor">@color/mediumTextColor</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"></style>
+
+    <style name="ToolbarTitleStyle" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColor">@color/redColor</item>
+        <item name="android:textSize">@dimen/text_size_20sp</item>
+        <item name="fontPath">fonts/Roboto-Bold.ttf</item>
+        <item name="spinBars">true</item>
+    </style>
+</resources>
