@@ -92,9 +92,11 @@ public class FeedsListFragment extends BaseFragment {
                     binding.swipeToRefreshLayout.setRefreshing(false);
                 }
                 if (response.getFeeds() != null) {
+                    binding.errorView.setVisibility(View.GONE);
                     FeedsListFragment.this.initRecyclerView(response.getFeeds().getRows());
                     FeedsListFragment.this.updateToolbarTitle(response.getFeeds().getTitle());
                 } else if (response.getFeeds() == null && !TextUtils.isEmpty(response.getErrorMessage())) {
+                    binding.errorView.setVisibility(View.VISIBLE);
                     Toast.makeText(FeedsListFragment.this.getActivity(), FeedsListFragment.this.getActivity().getString(R.string.errorString) + response.getErrorMessage(), Toast.LENGTH_LONG).show();
                 }
             }

@@ -10,6 +10,7 @@ import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
+import com.android.feedreader.ErrorDispatcher;
 import com.android.feedreader.R;
 import com.android.feedreader.SuccessDispatcher;
 
@@ -29,6 +30,7 @@ import okhttp3.mockwebserver.MockWebServer;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.swipeDown;
+import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -44,8 +46,6 @@ public class FeedsActivityTest {
     @Before
     public void setUp() throws Exception {
         mockWebServer.start(8080);
-        mockWebServer.setDispatcher(new SuccessDispatcher());
-        mActivityTestRule.launchActivity(null);
     }
 
     @After
@@ -53,13 +53,19 @@ public class FeedsActivityTest {
         mockWebServer.shutdown();
     }
 
-    @Test
-    public void feedsActivityTest1() {
+    private void sleep(long millis){
         try {
-            Thread.sleep(1000);
+            Thread.sleep(millis);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void feedsActivityTest1() {
+        mockWebServer.setDispatcher(new SuccessDispatcher());
+        mActivityTestRule.launchActivity(null);
+        sleep(1000);
         onView(withIndex(withId(R.id.headingTextView), 1)).check(matches(isDisplayed()));
         onView(withIndex(withId(R.id.descriptionTextView), 1)).check(matches(isDisplayed()));
         onView(withIndex(withId(R.id.feedImageView), 1)).check(matches(isDisplayed()));
@@ -68,43 +74,46 @@ public class FeedsActivityTest {
 
     @Test
     public void feedsActivityTestCheckToolbar() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        mockWebServer.setDispatcher(new SuccessDispatcher());
+        mActivityTestRule.launchActivity(null);
+        sleep(1000);
         onView(withId(R.id.toolbar)).check(matches(isDisplayed()));
     }
 
     @Test
     public void feedsActivityTestNoNetworkBanner() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        mockWebServer.setDispatcher(new SuccessDispatcher());
+        mActivityTestRule.launchActivity(null);
         disableWIFI();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        sleep(5000);
         if (getMobileDataState() == false)
             onView(withId(R.id.include)).check(matches(isDisplayed()));
     }
 
     @Test
     public void feedsActivityTestPullTopRefresh(){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        mockWebServer.setDispatcher(new SuccessDispatcher());
+        mActivityTestRule.launchActivity(null);
+        sleep(1000);
         onView(withId(R.id.swipeToRefreshLayout)).perform(swipeDown());
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        sleep(2000);
         onView(withIndex(withId(R.id.headingTextView), 1)).check(matches(isDisplayed()));
         onView(withIndex(withId(R.id.descriptionTextView), 1)).check(matches(isDisplayed()));
         onView(withIndex(withId(R.id.feedImageView), 1)).check(matches(isDisplayed()));
         onView(withIndex(withId(R.id.imageViewNext), 1)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void feedsActivityTestAPIErrorCase() {
+        sleep(1000);
+        mockWebServer.setDispatcher(new ErrorDispatcher());
+        mActivityTestRule.launchActivity(null);
+        sleep(1000);
+        onView(withId(R.id.headingTextView)).check(doesNotExist());
+        onView(withId(R.id.descriptionTextView)).check(doesNotExist());
+        onView(withId(R.id.feedImageView)).check(doesNotExist());
+        onView(withId(R.id.imageViewNext)).check(doesNotExist());
+        onView(withId(R.id.errorView)).check(matches(isDisplayed()));
     }
 
     private void disableWIFI() {

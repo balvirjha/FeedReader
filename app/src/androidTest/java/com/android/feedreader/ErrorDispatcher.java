@@ -12,28 +12,25 @@ import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.RecordedRequest;
 
-public class SuccessDispatcher extends Dispatcher {
+public class ErrorDispatcher extends Dispatcher {
     private Context context;
     private Map<String, String> responseFilesByPath = new HashMap<>();
 
-    public SuccessDispatcher() {
+    public ErrorDispatcher() {
         context = InstrumentationRegistry.getInstrumentation().getContext();
-        responseFilesByPath.put("facts.json", "facts.json");
+        responseFilesByPath.put("error_facts.json", "error_facts.json");
     }
 
     @Override
-    public MockResponse dispatch(RecordedRequest request) throws InterruptedException {
+    public MockResponse dispatch(RecordedRequest request) {
         MockResponse errorResponse = new MockResponse().setResponseCode(404);
 
         String pathWithoutQueryParams = Uri.parse(request.getPath()).getPath();
 
         if (pathWithoutQueryParams != null) {
-            String responseBody = new AssetReaderUtil().asset(pathWithoutQueryParams);
-            return new MockResponse().setResponseCode(200).setBody(responseBody);
-        } else {
-            String responseBody = new AssetReaderUtil().asset(pathWithoutQueryParams);
+            String responseBody = new AssetReaderUtil().asset("/error_facts.json");
             return errorResponse.setBody(responseBody);
         }
+        return errorResponse;
     }
-
 }

@@ -6,17 +6,23 @@ import java.io.InputStreamReader;
 
 public class AssetReaderUtil {
 
-    public String asset() {
-        return inputStreamToString();
+    public String asset(String endPoint) {
+        return inputStreamToString(endPoint);
     }
 
-    private String inputStreamToString() {
+    private String inputStreamToString(String endPoint) {
         StringBuilder builder = new StringBuilder();
 
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(
-                    new InputStreamReader(FeedReaderTestApplication.getInstance().getAssets().open("facts.json")));
+            if (endPoint.equalsIgnoreCase("/facts.json")) {
+                reader = new BufferedReader(
+                        new InputStreamReader(FeedReaderTestApplication.getInstance().getAssets().open("facts.json")));
+
+            } else if (endPoint.equalsIgnoreCase("/error_facts.json")) {
+                reader = new BufferedReader(
+                        new InputStreamReader(FeedReaderTestApplication.getInstance().getAssets().open("error_facts.json")));
+            }
             String mLine;
             while ((mLine = reader.readLine()) != null) {
                 builder.append(mLine);
