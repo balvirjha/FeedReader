@@ -10,7 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.android.feedreader.MockTestRunner"
         buildConfigField 'String', 'BASE_URL', '"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/"'
     }
     aaptOptions {
@@ -49,7 +49,13 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayoutVersion"
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "androidx.test:runner:$rootProject.testRunnerVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestImplementation("androidx.test.espresso:espresso-core:$rootProject.espressoVersion") {
+        exclude group: 'javax.inject'
+    }
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
+    testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    androidTestImplementation "org.mockito:mockito-android:$rootProject.mockitoVersion"
+    testImplementation "androidx.arch.core:core-testing:$rootProject.lifecycleVersion"
     androidTestImplementation "androidx.test:rules:$rootProject.testRunnerVersion"
     androidTestImplementation "com.squareup.okhttp3:mockwebserver:$rootProject.okhttpVersion"
     implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"

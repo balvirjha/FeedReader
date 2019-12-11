@@ -42,4 +42,5 @@ ext {
     designLibVersion = '1.0.0'
     picasso = '2.71828'
     touchImageView = '1.4.0'
+    mockitoVersion = '3.0.0'
 }

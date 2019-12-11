@@ -47,7 +47,8 @@ public class FeedApplication extends MultiDexApplication implements NetworkState
         }
         return feedsRepo;
     }
-    private ApiService getApiService() {
+
+    public ApiService getApiService() {
         if (apiService == null) {
             FlowSDKApiClient apiClient = new FlowSDKApiClient.Builder()
                     .setBaseUrl(BuildConfig.BASE_URL)
