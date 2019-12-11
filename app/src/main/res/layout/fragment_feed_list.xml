@@ -5,6 +5,14 @@
 
     <data>
 
+        <import type="com.android.feedreader.R" />
+
+        <import type="com.android.feedreader.feeds.model.Status" />
+
+        <variable
+            name="resource"
+            type="com.android.feedreader.feeds.model.Resource" />
+
         <variable
             name="viewModal"
             type="com.android.feedreader.feeds.modules.feeds.FeedListViewModal" />
@@ -41,14 +49,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibleGone="@{resource.status== Status.LOADING}" />
 
         <TextView
             android:id="@+id/errorView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Something Went Wrong, Please try after sometime."
+            android:text="@string/something_went_wrong_please_try_after_sometime"
             android:textColor="@color/bannerBackground"
             android:textSize="@dimen/text_size_20sp"
             android:visibility="gone"

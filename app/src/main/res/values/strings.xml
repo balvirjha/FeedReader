@@ -2,4 +2,5 @@
     <string name="app_name">FeedReader</string>
     <string name="not_connected_to_network">Not Connected To Network</string>
     <string name="errorString">Error: </string>
+    <string name="something_went_wrong_please_try_after_sometime">Something Went Wrong, Please try after sometime.</string>
 </resources>

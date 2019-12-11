@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +22,8 @@ import com.android.feedreader.feeds.app.BaseFragment;
 import com.android.feedreader.feeds.app.FeedApplication;
 import com.android.feedreader.feeds.modals.FeedsResponse;
 import com.android.feedreader.feeds.modals.Row;
+import com.android.feedreader.feeds.model.Event;
+import com.android.feedreader.feeds.model.Resource;
 
 import java.util.List;
 
@@ -84,20 +87,25 @@ public class FeedsListFragment extends BaseFragment {
 
     @SuppressWarnings("ConstantConditions")
     private void observeFeedsApi() {
-        feedListViewModal.getFeedsResponse().observe(this, feedsResponse -> {
-            FeedsResponse response = feedsResponse.getContentIfNotHandled();
-            if (response != null) {
-                binding.progressFeed.setVisibility(View.GONE);
-                if (binding.swipeToRefreshLayout != null) {
-                    binding.swipeToRefreshLayout.setRefreshing(false);
-                }
-                if (response.getFeeds() != null) {
-                    binding.errorView.setVisibility(View.GONE);
-                    FeedsListFragment.this.initRecyclerView(response.getFeeds().getRows());
-                    FeedsListFragment.this.updateToolbarTitle(response.getFeeds().getTitle());
-                } else if (response.getFeeds() == null && !TextUtils.isEmpty(response.getErrorMessage())) {
-                    binding.errorView.setVisibility(View.VISIBLE);
-                    Toast.makeText(FeedsListFragment.this.getActivity(), FeedsListFragment.this.getActivity().getString(R.string.errorString) + response.getErrorMessage(), Toast.LENGTH_LONG).show();
+        feedListViewModal.getFeedsResponse().observe(this, new Observer<Resource<Event<FeedsResponse>>>() {
+            @Override
+            public void onChanged(Resource<Event<FeedsResponse>> feedsResponse) {
+                binding.setResource(feedsResponse);
+                if (feedsResponse.data != null) {
+                    FeedsResponse response = feedsResponse.data.getContentIfNotHandled();
+                    if (response != null) {
+                        if (binding.swipeToRefreshLayout != null) {
+                            binding.swipeToRefreshLayout.setRefreshing(false);
+                        }
+                        if (response.getFeeds() != null) {
+                            binding.errorView.setVisibility(View.GONE);
+                            FeedsListFragment.this.initRecyclerView(response.getFeeds().getRows());
+                            FeedsListFragment.this.updateToolbarTitle(response.getFeeds().getTitle());
+                        } else if (response.getFeeds() == null && !TextUtils.isEmpty(response.getErrorMessage())) {
+                            binding.errorView.setVisibility(View.VISIBLE);
+                            Toast.makeText(FeedsListFragment.this.getActivity(), FeedsListFragment.this.getActivity().getString(R.string.errorString) + response.getErrorMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
                 }
             }
         });
@@ -112,6 +120,7 @@ public class FeedsListFragment extends BaseFragment {
     }
 
     private void callFeedsApi() {
+        binding.errorView.setVisibility(View.GONE);
         if (!feedListViewModal.isApiCallInProgress()) {
             if (binding.swipeToRefreshLayout == null || !binding.swipeToRefreshLayout.isRefreshing()) {
                 binding.progressFeed.setVisibility(View.VISIBLE);
