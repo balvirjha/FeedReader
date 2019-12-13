@@ -4,15 +4,17 @@ import com.android.feedreader.feeds.api.ApiService;
 import com.android.feedreader.feeds.api.FlowSDKApiClient;
 import com.android.feedreader.feeds.app.FeedApplication;
 
+import static com.android.feedreader.feeds.app.AppConstants.TEST_BASE_URL;
+
 public class FeedReaderTestApplication extends FeedApplication {
     private ApiService apiService;
-    private static final String BASE_URL = "http://127.0.0.1:8080";
+
 
     @Override
     public ApiService getApiService() {
         if (apiService == null) {
              FlowSDKApiClient apiClient = new FlowSDKApiClient.Builder()
-                    .setBaseUrl(BASE_URL)
+                    .setBaseUrl(TEST_BASE_URL)
                     .create();
 
             apiService = apiClient.getApiService();

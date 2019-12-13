@@ -15,7 +15,7 @@ public class Event<T> {
 
     public Event(T content) {
         if (content == null) {
-            throw new IllegalArgumentException("null values in Event are not allowed.");
+            throw new IllegalArgumentException();
         }
         mContent = content;
     }

@@ -18,7 +18,6 @@ public class FeedApplication extends MultiDexApplication implements NetworkState
     private static FeedApplication instance;
     private FeedsRepo feedsRepo;
     private ApiService apiService;
-    public static final String APP_TAG = FeedApplication.class.getSimpleName();
 
     @SuppressWarnings("unused")
     public FeedApplication() {

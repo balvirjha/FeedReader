@@ -2,7 +2,7 @@ package com.android.feedreader.feeds.api;
 
 import android.util.Log;
 
-import com.android.feedreader.feeds.app.FeedApplication;
+import com.android.feedreader.feeds.app.AppConstants;
 
 import java.util.concurrent.TimeUnit;
 
@@ -11,6 +11,9 @@ import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.android.feedreader.feeds.app.AppConstants.CLOSE;
+import static com.android.feedreader.feeds.app.AppConstants.CONNECTION;
 
 public class FlowSDKApiClient {
     private ApiService apiService;
@@ -50,7 +53,7 @@ public class FlowSDKApiClient {
         }
 
         private HttpLoggingInterceptor getLoggingInterceptor() {
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(message -> Log.i(FeedApplication.APP_TAG, message));
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(message -> Log.i(AppConstants.APP_TAG, message));
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             return interceptor;
         }
@@ -66,7 +69,7 @@ public class FlowSDKApiClient {
                     .connectTimeout(RETROFIT_CONNECTION_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                     .writeTimeout(RETROFIT_CONNECTION_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                     .addNetworkInterceptor(chain -> {
-                        Request request = chain.request().newBuilder().addHeader("Connection", "close").build();
+                        Request request = chain.request().newBuilder().addHeader(CONNECTION, CLOSE).build();
                         return chain.proceed(request);
                     })
                     .readTimeout(RETROFIT_CONNECTION_TIMEOUT_SECONDS, TimeUnit.SECONDS);

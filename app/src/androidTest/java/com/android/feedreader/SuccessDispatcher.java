@@ -12,13 +12,15 @@ import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.RecordedRequest;
 
+import static com.android.feedreader.feeds.app.AppConstants.FEED_LIST_END_POINT;
+
 public class SuccessDispatcher extends Dispatcher {
     private Context context;
     private Map<String, String> responseFilesByPath = new HashMap<>();
 
     public SuccessDispatcher() {
         context = InstrumentationRegistry.getInstrumentation().getContext();
-        responseFilesByPath.put("facts.json", "facts.json");
+        responseFilesByPath.put(FEED_LIST_END_POINT, FEED_LIST_END_POINT);
     }
 
     @Override

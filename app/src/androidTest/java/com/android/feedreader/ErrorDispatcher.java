@@ -12,13 +12,15 @@ import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.RecordedRequest;
 
+import static com.android.feedreader.feeds.app.AppConstants.ERROR_FEED_LIST_END_POINT;
+
 public class ErrorDispatcher extends Dispatcher {
     private Context context;
     private Map<String, String> responseFilesByPath = new HashMap<>();
 
     public ErrorDispatcher() {
         context = InstrumentationRegistry.getInstrumentation().getContext();
-        responseFilesByPath.put("error_facts.json", "error_facts.json");
+        responseFilesByPath.put(ERROR_FEED_LIST_END_POINT, ERROR_FEED_LIST_END_POINT);
     }
 
     @Override
